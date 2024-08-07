@@ -48,7 +48,7 @@ class WeatherService {
       if (!this.baseURL || !this.apiKey) throw new Error('url or api key messed up')
 
         const response: Coordinates[] = await fetch(query).then((res) => res.json())
-        return response;
+        return response[0];
 
     } catch (err) {
       console.error(err);
@@ -83,7 +83,10 @@ class WeatherService {
   }
   // TODO: Create fetchAndDestructureLocationData method
   private async fetchAndDestructureLocationData() {
-    return await this.fetchLocationData(this.buildGeocodeQuery()).then((data) => this.destructureLocationData(data));
+    return await this.fetchLocationData(this.buildGeocodeQuery()).then((data) =>{ 
+      console.log(data)
+      this.destructureLocationData(data)
+    });
 
   }
   // TODO: Create fetchWeatherData method
