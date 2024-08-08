@@ -83,12 +83,12 @@ class WeatherService {
   }
   // TODO: Create fetchAndDestructureLocationData method
   private async fetchAndDestructureLocationData() {
-    return await this.fetchLocationData(this.buildGeocodeQuery()).then((data) =>{ 
-      console.log(data)
-      this.destructureLocationData(data)
+    return await this.fetchLocationData(this.buildGeocodeQuery()).then((data) =>{    
+     return this.destructureLocationData(data)
     });
 
-  }
+  } 
+
   // TODO: Create fetchWeatherData method
   private async fetchWeatherData(coordinates: Coordinates) {
     try {
@@ -155,10 +155,9 @@ class WeatherService {
       }
 
       throw new Error('Weather data not found');
-    } catch (err) {
-      console.error(err);
-      throw err;
-      
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
   }
 }
